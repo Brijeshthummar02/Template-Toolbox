@@ -1,0 +1,47 @@
+# Common Tests:Linting, Unit test, Build test
+
+# 1. Linting Test (ESLint + Prettier)
+# 2. TypeScript Type-Checking (if using TypeScript)
+# 3. Unit Tests (with a framework like Jest or Vitest)
+# 4. Integration Tests (if applicable)
+# 5. Build Test (ensure the project builds without errors)
+# 6. Deployment Test (automated deployment upon successful tests)
+
+
+name: CI Workflow
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run test
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run build
