@@ -1,0 +1,6 @@
+# Purpose: This file specifies which files and directories should be ignored by Git version control.
+
+node_modules/
+dist/
+coverage/
+.env

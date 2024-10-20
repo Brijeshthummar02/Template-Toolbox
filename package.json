@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "description": "A sample project for CI testing",
+    "main": "index.js",
+    "scripts": {
+      "lint": "eslint .",
+      "test": "vitest run",
+      "build": "echo 'Build successful'"
+    },
+    "author": "Your Name",
+    "license": "MIT",
+    "devDependencies": {
+      "eslint": "^8.50.0",
+      "eslint-plugin-react": "^7.32.0",
+      "eslint-plugin-react-hooks": "^4.6.0",
+      "vitest": "^0.32.0"
+    }
+  }
+  
