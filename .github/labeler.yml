@@ -1,0 +1,39 @@
+# Label for issues containing the word "bug" or using the "bug report" template
+bug:
+  - "bug"
+  - "Bug report"
+
+# Label for issues containing the word "feature" or using the "feature request" template
+feature:
+  - "feature"
+  - "Feature request"
+
+# Label for issues mentioning "documentation"
+documentation:
+  - "documentation"
+
+# Label for issues containing the word "security" or "vulnerability"
+security:
+  - "security"
+  - "vulnerability"
+
+# Label for issues that are marked as a good first issue or contain "beginner"
+good first issue:
+  - "good first issue"
+  - "beginner"
+
+# Label for issues that are high priority
+high priority:
+  - "high priority"
+  - "urgent"
+  - "critical"
+
+# Label for issues that are low priority
+low priority:
+  - "low priority"
+  - "minor"
+  - "non-urgent"
+
+# Default label for any other issues
+other:
+  - "*"
