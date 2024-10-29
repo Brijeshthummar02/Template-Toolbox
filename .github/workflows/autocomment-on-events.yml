@@ -1,3 +1,5 @@
+# There are 4 different workflows in one file.
+
 name: Auto Comment on Events
 
 on:
@@ -20,7 +22,7 @@ jobs:
         run: |
           COMMENT=$(cat <<EOF
           {
-            "body": "Thank you for creating this issue! 🎉 We'll look into it as soon as possible. In the meantime, please make sure to provide all the necessary details and context. If you have any questions or additional information, feel free to add them here. Your contributions are highly appreciated! 😊\n\nYou can also check our [CONTRIBUTING.md]for guidelines on contributing to this project."
+            "body":  👋 Thanks for opening this issue! We appreciate your contribution. Please make sure you’ve provided all the necessary details and screenshots, and don't forget to follow our Guidelines and Code of Conduct. Happy coding! 🚀
           }
           EOF
           )
