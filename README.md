@@ -8,15 +8,18 @@ Template Hub offers a collection of ready-to-use templates for CI/CD, applicatio
 </div>
 
 ISSUE_TEMPLATE
+
 	1.	bug_report.yaml - For reporting bugs.
 	2.	documentation_update.yaml - For suggesting documentation improvements.
 	3.	feature_request.yaml - For proposing new features.
 	4.	other.yaml - For general or miscellaneous issues.
 
 PULL_REQUEST_TEMPLATE
+
 	1.	pull_request_template.yaml - For standardizing pull request submissions.
 
 Workflows
+
 	1.	auto_assign.yaml - Automatically assigns reviewers to PRs/issues.
 	2.	dose_issue_on_pr_merge.yaml - Closes linked issues when PRs are merged.
 	3.	greetings.yaml - Sends welcome messages to first-time contributors.
