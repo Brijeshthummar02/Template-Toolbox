@@ -1,34 +1,34 @@
 // Purpose: This file configures ESLint, a static code analysis tool for identifying problematic patterns in JavaScript and TypeScript code.
 
-// {
-//     "env": {
-//       "browser": true,
-//       "es2021": true,
-//       "node": true
-//     },
-//     "extends": [
-//       "eslint:recommended",
-//       "plugin:react/recommended",
-//       "plugin:react-hooks/recommended",
-//       "plugin:@typescript-eslint/recommended",
-//       "prettier"
-//     ],
-//     "parser": "@typescript-eslint/parser",
-//     "parserOptions": {
-//       "ecmaFeatures": {
-//         "jsx": true
-//       },
-//       "ecmaVersion": 12,
-//       "sourceType": "module"
-//     },
-//     "plugins": [
-//       "react",
-//       "react-hooks",
-//       "@typescript-eslint"
-//     ],
-//     "rules": {
-//       "react/react-in-jsx-scope": "off",
-//       "@typescript-eslint/no-unused-vars": ["error"]
-//     }
-//   }
+{
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-vars": ["error"]
+    }
+  }
   
