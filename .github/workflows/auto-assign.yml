@@ -1,17 +1,68 @@
-# assigns task to who ever creates it.
-
-name: Auto Assign Issue Creator
+name: Auto Assign on Issue Comment
 
 on:
+  issue_comment:
+    types: [created]
   issues:
     types: [opened]
+
+permissions:
+  issues: write
 
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
     steps:
-      - name: Assign issue creator
-        uses: ahmadnassri/action-auto-assign@v2
+      - name: Auto-assign based on comment
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          assignees: ${{ github.actor }}
+          script: |
+            const issue = context.payload.issue || context.payload.comment?.issue;
+            if (!issue) return;
+
+            const { owner, repo } = context.repo;
+            const issueNumber = issue.number;
+            const commenter = context.payload.comment?.user?.login;
+            const comment = context.payload.comment?.body?.toLowerCase();
+            const assignedUsers = issue.assignees?.map(user => user.login) || [];
+
+            if (!commenter || !comment || comment.includes("🤖")) return;
+
+            if (comment.trim() === "no") {
+              if (assignedUsers.length) {
+                await github.rest.issues.removeAssignees({ owner, repo, issue_number: issueNumber, assignees: assignedUsers });
+                await github.rest.issues.createComment({ owner, repo, issue_number: issueNumber, body: `🤖 @${assignedUsers[0]} has been removed from the issue.` });
+              } else {
+                await github.rest.issues.createComment({ owner, repo, issue_number: issueNumber, body: "🤖 No user assigned, no changes made." });
+              }
+              return;
+            }
+
+            const keywords = ["assign me", "i would like to work on this"];
+            if (keywords.some(keyword => comment.includes(keyword))) {
+              if (assignedUsers.length && assignedUsers[0] !== commenter) {
+                await github.rest.issues.createComment({ owner, repo, issue_number: issueNumber, body: `🤖 @${assignedUsers[0]}, are you still working on this? If not, @${commenter} is interested.` });
+                await github.rest.issues.addLabels({ owner, repo, issue_number: issueNumber, labels: ["pending-reassignment"] });
+                return;
+              }
+              await github.rest.issues.addAssignees({ owner, repo, issue_number: issueNumber, assignees: [commenter] });
+              await github.rest.issues.createComment({ owner, repo, issue_number: issueNumber, body: `🤖 @${commenter}, you have been assigned to this issue!` });
+            }
+
+      - name: Post instructions on issue creation
+        if: github.event.action == 'opened'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { owner, repo } = context.repo;
+            const issueNumber = context.payload.issue?.number;
+            if (!issueNumber) return;
+            
+            const instructions = `🤖 To be assigned, comment:
+            - "Assign me"
+            - "I would like to work on this"
+            If already assigned, the current user will be asked if they are still working on it.`;
+            
+            await github.rest.issues.createComment({ owner, repo, issue_number: issueNumber, body: instructions });
